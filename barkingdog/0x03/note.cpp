@@ -11,3 +11,10 @@ int main(void)
   for (int i = 0; i < 21; i++)
     fill(b[i], b[i] + 21, 0); // 2차원
 }
+
+#include <bits/stdc++.h>
+using namespace std;
+int main(void)
+{
+  ios::sync_with_stdio(0), cin.tie(0);
+}
