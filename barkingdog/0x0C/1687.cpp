@@ -26,15 +26,10 @@ void search(int x, int y, int cur)
 int main(void)
 {
   ios::sync_with_stdio(0), cin.tie(0);
-  int t;
-  cin >> t;
-  for (int test_case = 1; test_case <= t; test_case++)
-  {
-    cin >> n >> m;
-    for (int i = 0; i < n; i++)
-      cin >> board[i];
-    search(0, 0, 1);
-    cout << '#' << test_case << ' ' << ans << '\n';
-    ans = 0;
-  }
+  cin >> n >> m;
+  for (int i = 0; i < n; i++)
+    cin >> board[i];
+  search(0, 0, 1);
+  cout << ans;
+  ans = 0;
 }
