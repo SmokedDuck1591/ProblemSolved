@@ -6,16 +6,18 @@ int main(void)
   ios::sync_with_stdio(0), cin.tie(0);
   string n, tmp;
   int x, y;
-  int arr[1000002];
   cin >> n >> x >> y;
+  deque<int> dq;
 
   for (int i = 0; i < n.length(); i++)
   {
-    if (n[i] < x)
+    if (n[i] > x and n[i] < y)
     {
-      for (int j = 0; j < n.length(); j++)
-      {
-      }
+      dq.push_front(x);
     }
+    if (n[i] > y)
+      dq.push_front(y);
+    if (n[i] < x)
+      dq.pop_front();
   }
 }
