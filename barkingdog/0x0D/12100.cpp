@@ -203,7 +203,7 @@ void move(int dir)
 }
 void func(int k)
 {
-  if (k == 5)
+  if (k == 10)
   {
     int tmp = 0;
     for (int i = 0; i < n; i++)
