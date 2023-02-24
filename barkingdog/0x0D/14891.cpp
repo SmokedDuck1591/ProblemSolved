@@ -32,15 +32,17 @@ int main(void)
   int cmd;
   cin >> cmd;
 
-  while (--cmd)
+  while (cmd--)
   {
     int num, dir;
     cin >> num >> dir;
 
-    bool check[4] = {0};
+    bool check[5] = {0};
+    int direct[5] = {0};
     queue<int> Q;
     Q.push(num);
-    check[num - 1] = 1;
+    check[num] = 1;
+    direct[num] = dir;
     while (!Q.empty())
     {
       int cur = Q.front();
@@ -50,23 +52,49 @@ int main(void)
         int nx = cur + dirr[i];
         if (nx >= 5 || nx < 1)
           continue;
-        if (check[nx - 1])
+        if (check[nx])
           continue;
-        rotate(cur, dir);
         if (cur > nx)
         {
+          check[nx] = 1;
           if (d[cur][6] == d[nx][2])
+            continue;
+          else
           {
-            if (dir == 1)
-            {
-            }
-            else
-            {
-            }
+            if (direct[cur] == -1)
+              direct[nx] = 1;
+            else if (direct[cur] == 1)
+              direct[nx] = -1;
+          }
+        }
+        else
+        {
+          check[nx] = 1;
+          if (d[cur][2] == d[nx][6])
+            continue;
+          else
+          {
+            if (direct[cur] == -1)
+              direct[nx] = 1;
+            else if (direct[cur] == 1)
+              direct[nx] = -1;
           }
         }
         Q.push(nx);
       }
     }
+    for (int i = 1; i <= 4; i++)
+    {
+      if (direct[i] != 0)
+        rotate(i, direct[i]);
+    }
   }
+  int score = 1;
+  int ans = 0;
+  for (int i = 1; i <= 4; i++)
+  {
+    ans += (d[i][0] - '0') * score;
+    score = score << 1;
+  }
+  cout << ans;
 }
